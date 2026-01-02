@@ -7,11 +7,11 @@ function pad2(n) {
 }
 
 function monthKey(date) {
-  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}`; // YYYY-MM
+  return `${date.getFullYear()}-${pad2(date.getMonth() + 1)}`; 
 }
 
 function dateKey(y, m, d) {
-  return `${y}-${pad2(m)}-${pad2(d)}`; // YYYY-MM-DD
+  return `${y}-${pad2(m)}-${pad2(d)}`;
 }
 
 export default function App() {
@@ -62,15 +62,14 @@ export default function App() {
   const selectedTasks = tasksByDate.get(selectedDate) || [];
 
   const year = current.getFullYear();
-  const monthIndex = current.getMonth(); // 0-11
+  const monthIndex = current.getMonth(); 
   const firstDay = new Date(year, monthIndex, 1);
-  const startWeekday = (firstDay.getDay() + 6) % 7; // Monday=0
+  const startWeekday = (firstDay.getDay() + 6) % 7; 
   const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
   const daysInPrevMonth = new Date(year, monthIndex, 0).getDate();
 
   const cells = [];
   
-  // Дни от предишния месец
   const prevYear = monthIndex === 0 ? year - 1 : year;
   const prevMonthIdx = monthIndex === 0 ? 11 : monthIndex - 1;
   if (startWeekday > 0) {
@@ -80,12 +79,10 @@ export default function App() {
     }
   }
   
-  // Дни от текущия месец
   for (let d = 1; d <= daysInMonth; d++) {
     cells.push({ day: d, month: 'current', year, monthIdx: monthIndex });
   }
   
-  // Дни от следващия месец (за да напълним до точно 42 клетки)
   const nextYear = monthIndex === 11 ? year + 1 : year;
   const nextMonthIdx = monthIndex === 11 ? 0 : monthIndex + 1;
   const remaining = 42 - cells.length;
@@ -321,7 +318,6 @@ export default function App() {
         )}
       </section>
 
-      {/* Edit Modal */}
       <Modal 
         isOpen={editModal.isOpen} 
         onClose={closeEditModal}
@@ -375,7 +371,6 @@ export default function App() {
         </div>
       </Modal>
 
-      {/* Delete Modal */}
       <Modal 
         isOpen={deleteModal.isOpen} 
         onClose={closeDeleteModal}

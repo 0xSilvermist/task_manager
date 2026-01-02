@@ -6,7 +6,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// healthcheck
 app.get("/health", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT 1 AS ok");
@@ -16,9 +15,8 @@ app.get("/health", async (req, res) => {
   }
 });
 
-// list tasks (optionally filtered by month)
 app.get("/tasks", async (req, res) => {
-  const { month } = req.query; // format: YYYY-MM
+  const { month } = req.query; 
 
   try {
     let sql = `
