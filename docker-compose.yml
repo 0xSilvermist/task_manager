@@ -27,7 +27,6 @@ services:
       DB_USER: ${MYSQL_USER}
       DB_PASSWORD: ${MYSQL_PASSWORD}
       DB_NAME: ${MYSQL_DATABASE}
-    # Не експозираме порта директно - достъпен само през Nginx
     depends_on:
       db:
         condition: service_healthy
@@ -36,18 +35,17 @@ services:
     build: ./frontend
     container_name: calendar-frontend
     restart: unless-stopped
-    # Не експозираме порта директно - достъпен само през Nginx
 
   nginx:
     image: nginx:alpine
     container_name: calendar-nginx
     restart: unless-stopped
     ports:
-      - "80:80"   # HTTP - пренасочва към HTTPS
-      - "443:443" # HTTPS - основният порт
+      - "80:80"   
+      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro  # SSL сертификати
+      - ./nginx/ssl:/etc/nginx/ssl:ro 
     depends_on:
       - frontend
       - api

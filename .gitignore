@@ -1,37 +1,10 @@
-# Dependencies
 node_modules/
-# package-lock.json - комитираме го за консистентност
 
-# Environment variables
 .env
 
-# Build outputs
 frontend/dist/
 backend/dist/
 
-# Logs
-*.log
-npm-debug.log*
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Docker volumes (не комитираме данните)
-# db_data/ се управлява от Docker
-
-# SSL certificates - НЕ комитираме сертификатите (чувствителни данни)
 nginx/ssl/*.crt
 nginx/ssl/*.key
-# Но оставяме папката nginx/ssl/ за структура
-
-# Temporary files
-*.tmp
-*.temp
 
